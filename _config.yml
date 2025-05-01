@@ -7,17 +7,17 @@
 
 # Main Page Setup
 
-title: John Doe's Portfolio # This is what shows up in the tab of the browser
+title: Jackson Asiatico's Portfolio
 
 
 
 # Hero Section
-name: John Doe
+name: Jackson Asiatico
 headline: headline message
 description: >- # dont remove this line. this will ignore all new lines until the next section
-  Write an awesome intro and discuss your highlights and qualification. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  I am a current PhD student in Aerospace Engineering at Embry-Riddle Aeronautical University.
+  I earned my Master's in Aerospace Engineering at the University of Central Florida and a Bachelor's in Mechanical Engineering from Georgia Southern University.
+  My primary focus of research is computational fluid dynamics (CFD) and applied aerodynamics.
 
 # Place your profile image in /assets/images/profile-image/folder and edit the file name
 profile_image: ./assets/images/profile-image/avatar.jpeg
