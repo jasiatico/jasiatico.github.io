@@ -45,16 +45,16 @@ external-links:    # input only your own url slug. The icons with missing entrie
 
 # Skills Section - Add the list of your Skills by categories/tools. The indentation for each level needs to be precise. 
 skills:
-  - category: 3D Modeling
+  - category: Computational Fluid Dynamics (CFD) and Mesh Generation
     tools:
-    - Onshape
-    - Solidworks
-    - Creo
-    - Fusion 360 (Autodesk)
-    - Blender (for complex shapes or animations)
-    - Siemens NX
-    - Inventor (Autodesk)
-    - CATIA (Dassault Systèmes)
+    - Star-CCM+
+    - FUN3D
+    - Ansys Fluent
+    - Ansys CFX
+    - FlightStream
+    - Pointwise
+    - HeldenMesh
+    - ICEM CFD
   - category: Prototyping
     tools:
     - SLA
