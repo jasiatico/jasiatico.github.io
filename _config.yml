@@ -20,7 +20,7 @@ description: >- # dont remove this line. this will ignore all new lines until th
   My primary focus of research is computational fluid dynamics (CFD) and applied aerodynamics.
 
 # Place your profile image in /assets/images/profile-image/folder and edit the file name
-profile_image: ./assets/images/profile-image/avatar2.JPG
+profile_image: ./assets/images/profile-image/flightsuit.JPG
 
 
 # Link your resume
@@ -31,8 +31,8 @@ resume-url: https://drive.google.com/file/d/13Z3duVzh-gguPU5r03oJVEE6rV9rd3DS/vi
 # Set up external links - this will show up as small icons next to your name.
 
 external-links:    # input only your own url slug. The icons with missing entries will not appear.
-  linkedin: test    # https://www.linkedin.com/in/{your url slug} 
-  github: leea12    # https://github.com/{your url slug} 
+  linkedin: jacksonasiatico    # https://www.linkedin.com/in/{your url slug} 
+  github: jasiatico    # https://github.com/{your url slug} 
   stackoverflow: test      # https://stackoverflow.com/users/{your url slug}
   medium:            # https://medium.com/@{your url slug} 
   x-twitter:   # https://x.com/{your url slug} 
