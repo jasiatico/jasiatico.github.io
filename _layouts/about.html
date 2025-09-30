@@ -3,27 +3,5 @@ layout: wrapper
 permalink: /about
 ---
 
-<div class="about-container">
-  <!-- Left column: profile + education -->
-  <div class="about-left">
-    <img src="{{ site.profile_image }}" alt="Profile Image" class="profile-pic">
 
-    <div class="education">
-      {% for edu in site.education %}
-      <p>
-        <strong>{{ edu.school }}</strong><br>
-        {{ edu.degree }}<br>
-        {{ edu.years }}
-      </p>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- Right column: about text -->
-  <div class="about-right">
-    <h2>About Me</h2>
-    <p>
-      {{ site.description }}
-    </p>
-  </div>
-</div>
+This is your about page
