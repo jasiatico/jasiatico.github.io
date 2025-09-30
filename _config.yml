@@ -19,6 +19,18 @@ description: >- # dont remove this line. this will ignore all new lines until th
   My research focuses on computational fluid dynamics (CFD) and applied aerodynamics, including work on NASA’s Dragonfly mission, 
   atmospheric entry vehicles such as the Mars Sample Return Earth Entry Vehicle, and microfluidics for space health applications.
 
+education:
+  - school: Embry-Riddle Aeronautical University
+    degree: Ph.D., Aerospace Engineering
+    years: 2021 – 2026 (Expected)
+  - school: University of Central Florida
+    degree: M.S., Aerospace Engineering
+    years: 2021 – 2023
+  - school: Georgia Southern University
+    degree: B.S., Mechanical Engineering
+    years: 2017 – 2021
+
+
 # Place your profile image in /assets/images/profile-image/folder and edit the file name
 profile_image: ./assets/images/profile-image/flightsuit.JPG
 

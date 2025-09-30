@@ -947,3 +947,66 @@ footer p {
       
 }
 
+/* ABOUT PAGE */
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.about-left {
+  flex: 1;
+  max-width: 280px;
+}
+
+.about-left img.profile-pic {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.about-left .education p {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+.about-right {
+  flex: 2;
+  min-width: 280px;
+}
+
+.about-right h2 {
+  font-size: 28px;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.about-right p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+  }
+
+  .about-left {
+    max-width: 100%;
+  }
+
+  .about-right {
+    min-width: 100%;
+  }
+
+  .about-left img.profile-pic {
+    max-width: 220px;
+    margin: 0 auto 1rem auto;
+    display: block;
+  }
+}
