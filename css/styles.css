@@ -274,6 +274,11 @@ main{padding-top:var(--header-height)}
 .card{background:var(--card);padding:1rem;border-radius:var(--radius);border:1px solid var(--card-border);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
 .card h3{margin-top:0}
 .project-detail{font-size:0.95rem;color:var(--muted);margin:0 0 0.4rem 0;font-weight:700}
+
+/* Experience card date/meta */
+.card-meta{margin:0.45rem 0 0.25rem 0;display:flex;align-items:center;gap:0.5rem}
+.experience-date{color:var(--muted);font-weight:700;font-size:0.92rem}
+.experience-date::before{content:""} /* reserved for potential icons */
 .card-actions{margin-top:1rem}
 .card-split{display:grid;grid-template-columns:360px 1fr;gap:1rem;align-items:start}
 .card-split .card-media{display:flex;flex-direction:column;align-items:flex-start;gap:0.6rem}
