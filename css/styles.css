@@ -1,0 +1,334 @@
+:root{
+  /* Black / Gray dark palette */
+  --bg: #050505;           /* page background */
+  --card: #0f0f10;         /* card surfaces */
+  --muted: #9aa0a6;        /* muted labels */
+  --text: #eef2f5;         /* primary text */
+  /* higher-contrast accent (Deep Sky Blue) */
+  --accent: #00bfff;       /* Deep Sky Blue */
+  --accent-2: #66e8ff;     /* softer blue stop */
+  --card-border: rgba(255,255,255,0.03);
+  --hero-pos-y: 46%; /* adjust this to move the hero image up/down (smaller = up, larger = down) */
+  --container:1100px;
+  --radius:10px;
+  --banner-bg: #000000; /* default banner color (dark mode) */
+  --header-height:74px; /* height used for the top strip + header offset */
+  /* Central header image variable: change this in one place to update hero background */
+  /* NOTE: the value is a url() so it can be used directly in background-image */
+  --header-image: url('../assets/images/header-backgrounds/HeaderBackground.jpg');
+}
+:root.light{
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --muted:#4b5563;
+  --text:#0b1220;
+  --accent:#0ea5a3;
+  --banner-bg: #ffffff; /* banner color in light mode */
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+}
+.container{max-width:var(--container);margin:0 auto;padding:1rem}
+.site-header{background:transparent;padding:0.6rem 0;position:fixed;top:0;left:0;right:0;z-index:1001}
+/* ensure main content is offset so it isn't hidden under the fixed header/banner */
+main{padding-top:var(--header-height)}
+.nav-wrap{display:flex;align-items:center;gap:1rem}
+.brand{font-weight:700;color:var(--text);text-decoration:none}
+.nav{margin-left:auto;display:flex;gap:1rem}
+.nav a{color:var(--muted);text-decoration:none}
+.top-banner{
+  /* thin decorative strip behind the header; uses solid color per theme */
+  position:fixed;left:0;right:0;top:0;height:var(--header-height);z-index:1000;
+  background: var(--banner-bg);
+  opacity: 1; /* fully opaque */
+  pointer-events:none;
+  transition:height .18s ease,opacity .18s ease;
+}
+
+/* sliding underline indicator that moves under the active nav link */
+.nav-indicator{position:absolute;bottom:-6px;height:3px;background:var(--accent);border-radius:2px;transition:transform .28s cubic-bezier(.2,.9,.2,1),width .28s cubic-bezier(.2,.9,.2,1);z-index:40}
+.nav{position:relative}
+.icon-btn{background:transparent;border:0;color:var(--muted);font-size:1.1rem;cursor:pointer}
+
+/* Theme toggle should visually match the nav links (size, font, alignment) */
+#theme-toggle{
+  background:transparent;
+  border:0;
+  color:var(--muted);
+  font-size:1rem; /* explicit, matches nav links */
+  line-height:1.4;
+  padding:0 .35rem;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  opacity:1;
+  transform: translateY(2px); /* nudge down to visually align with nav links */
+}
+.nav-toggle{display:none}
+
+.hero{padding:6rem 0 4rem 0;text-align:left;position:relative;overflow:hidden;min-height:320px;}
+.hero h1{font-size:2.25rem;margin:0}
+/* Bigger, punchier hero title */
+.hero-title{font-size:3.2rem;line-height:1;margin:0;font-weight:800;letter-spacing:-0.5px;padding-right:.2rem;color:var(--text);text-shadow:0 4px 14px rgba(0,0,0,0.66), 0 1px 0 rgba(0,0,0,0.18)}
+/* White headline with soft shadow and thin accent underline */
+.hero-title::after{content:"";position:absolute;left:0;bottom:-0.28rem;height:2px;width:30%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:3px;opacity:0.98;transform:translateY(6px);transition:transform .22s cubic-bezier(.2,.9,.3,1)}
+.hero-title:hover::after{transform:translateY(0)}
+
+.hero-sub{margin-top:.5rem;font-size:1.05rem;color:var(--muted);opacity:0.95;text-shadow:0 3px 10px rgba(0,0,0,0.55)}
+
+/* Entrance animations */
+@keyframes popInUp{from{opacity:0;transform:translateY(18px) scale(.995)}to{opacity:1;transform:none}}
+.hero-title,.hero-sub{animation:popInUp .7s cubic-bezier(.2,.9,.2,1) both}
+
+/* Banner background for hero handled via pseudo-elements so image filters
+   don't affect text/buttons. The image lives in ::before (filtered) and
+   an overlay gradient lives in ::after. The container (.container) is
+   positioned above both so its text remains crisp. */
+.hero, .hero-section{
+  position:relative;
+  overflow:hidden;
+  color:var(--text);
+}
+
+/* Image layer: filtered (brightness/contrast) - sits at z-index:0 */
+.hero::before, .hero-section::before{
+  content: "";
+  position:absolute;inset:0;
+  /* explicit header image (use the one stored in assets) */
+  background-image: url('../assets/images/header-backgrounds/HeaderBackground.jpg');
+  background-size: cover;
+  background-position: center var(--hero-pos-y);
+  background-repeat: no-repeat;
+  filter: brightness(0.62) contrast(0.98) saturate(0.95);
+  -webkit-filter: brightness(0.62) contrast(0.98) saturate(0.95);
+  z-index:0;
+}
+
+/* Overlay layer: subtle gradient to ensure consistent legibility - sits above image */
+.hero::after, .hero-section::after{
+  content: "";
+  position:absolute;inset:0;
+  background: linear-gradient(rgba(2,6,23,0.35), rgba(2,6,23,0.28));
+  z-index:1;
+  pointer-events:none;
+}
+
+/* Ensure hero content sits above the image & overlay */
+.hero > .container, .hero-section > .container,
+.hero .container, .hero-section .container,
+.hero .text, .hero-section .text{
+  position:relative;
+  z-index:2;
+  filter: none !important; /* ensure no inherited filters */
+  -webkit-filter: none !important;
+  /* nudge the content slightly to the right and down so it doesn't
+     cover important parts of the background image (e.g. your face) */
+  transform: translate(14px, 84px);
+  transition: transform .18s ease;
+}
+
+/* HERO-ONLY: Lock secondary button styles so they don't change with theme
+   These rules apply only to buttons inside the hero section and will
+   not affect primary button styling or buttons elsewhere. */
+.hero .btn.ghost{
+  /* outlined secondary (hero) - fixed colors */
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  padding: .75rem 1.2rem !important;
+  border-radius: 10px !important;
+  font-weight: 700;
+  box-shadow: none !important;
+  transition: background .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+.hero .btn.ghost:hover{
+  background: rgba(255,255,255,0.02) !important;
+  border-color: #00bfff !important; /* accent-blue highlight on hover */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.32) !important;
+}
+
+.hero .btn.secondary{
+  /* muted-fill secondary (hero) - fixed dark fill */
+  background: #232426 !important; /* consistent dark gray */
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  padding: .75rem 1.2rem !important;
+  border-radius: 10px !important;
+  font-weight:700;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55) !important;
+  transition: background .14s ease, box-shadow .14s ease;
+}
+.hero .btn.secondary:hover{
+  background: #2c2e31 !important; /* slightly lighter on hover */
+  box-shadow: 0 12px 28px rgba(0,0,0,0.58) !important;
+}
+/* LIGHT MODE HERO OVERRIDES: keep hero visuals identical to dark mode when
+   the `.light` class is active on the root. These override theme variable
+   swaps only inside the hero and do NOT change dark mode behavior. */
+.light .hero::before, .light .hero-section::before{
+  /* ensure the same filtered background as dark mode */
+  /* explicit header image for light-mode hero */
+  background-image: url('../assets/images/header-backgrounds/HeaderBackground.jpg') !important;
+  background-size: cover !important;
+  background-position: center var(--hero-pos-y) !important;
+  filter: brightness(0.62) contrast(0.98) saturate(0.95) !important;
+  -webkit-filter: brightness(0.62) contrast(0.98) saturate(0.95) !important;
+  z-index:0 !important;
+}
+.light .hero::after, .light .hero-section::after{
+  background: linear-gradient(rgba(2,6,23,0.35), rgba(2,6,23,0.28)) !important;
+  z-index:1 !important;
+}
+.light .hero, .light .hero-section{
+  /* Force hero-specific variables to dark-mode values so the hero
+     looks identical to dark mode even when the site root has .light */
+  --bg: #050505 !important;
+  --card: #0f0f10 !important;
+  --muted: #9aa0a6 !important;
+  --text: #eef2f5 !important;
+  --accent: #00bfff !important;
+  --accent-2: #66e8ff !important;
+  --card-border: rgba(255,255,255,0.03) !important;
+  color: #eef2f5 !important;
+}
+.light .hero > .container, .light .hero-section > .container,
+.light .hero .container, .light .hero-section .container{
+  filter: none !important;
+  -webkit-filter: none !important;
+  z-index:2 !important;
+  /* ensure the same nudge is applied in light-mode hero overrides */
+  transform: translate(14px, 84px) !important;
+}
+.light .hero .hero-title, .light .hero-section .hero-title,
+.light .hero .hero-sub, .light .hero-section .hero-sub{
+  color: #ffffff !important;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.66) !important;
+}
+.light .hero .btn.primary, .light .hero-section .btn.primary{
+  background: #00bfff !important;
+  color: #071017 !important; /* match dark-mode primary button text (black) */
+  box-shadow: 0 18px 48px rgba(0,0,0,0.45) !important;
+}
+.light .hero .btn.secondary, .light .hero-section .btn.secondary,
+.light .hero .btn.ghost, .light .hero-section .btn.ghost{
+  /* Keep hero secondary/ghost buttons outline-only in light mode
+     so they match the dark-mode look (no opaque dark fill). */
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+.accent{color:var(--accent);text-shadow:0 6px 24px rgba(0,191,255,0.08);font-weight:800}
+.lead{color:var(--muted);max-width:60ch}
+.cta-row{margin-top:1rem}
+.btn{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#050505;padding:.55rem 1rem;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.6);position:relative}
+.btn.primary{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#071017;padding:.75rem 1.2rem;font-weight:800;border-radius:10px;box-shadow:0 18px 48px rgba(2,6,23,0.65);transform:translateZ(0);overflow:visible}
+/* Glowing outline layer behind the button */
+.btn.primary::before{content:"";position:absolute;left:-6px;top:-6px;right:-6px;bottom:-6px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));filter:blur(18px);opacity:.35;z-index:-1;transition:opacity .25s}
+.btn.primary:hover::before{opacity:.55}
+.btn.primary:hover{filter:brightness(1.03);transform:translateY(-3px) scale(1.01);box-shadow:0 26px 68px rgba(2,6,23,0.75)}
+
+/* Responsive scaling */
+@media (max-width:900px){
+  .hero-title{font-size:2.6rem}
+  .btn.primary{padding:.65rem 1rem}
+}
+@media (max-width:640px){
+  .hero-title{font-size:2.1rem}
+  .hero-sub{font-size:.98rem}
+  .btn.primary{display:inline-block;width:100%;text-align:center;padding:.8rem}
+}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.18);padding:.75rem 1.2rem;border-radius:10px;font-weight:800;box-shadow:none;text-decoration:none;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease}
+/* On hover: subtle background and accent border highlight (option 2) */
+.btn.ghost:hover{background:rgba(255,255,255,0.02);border-color:var(--accent);box-shadow:0 8px 20px rgba(0,0,0,0.32)}
+
+/* Muted-fill secondary option: dark gray fill, white text, lower weight than primary */
+.btn.secondary{background:rgba(255,255,255,0.06);color:var(--text);padding:.75rem 1.2rem;border-radius:10px;border:1px solid rgba(255,255,255,0.06);font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,0.55);text-decoration:none;transition:background .14s ease,box-shadow .14s ease}
+/* On hover: brighten the muted fill slightly (option 1) */
+.btn.secondary:hover{background:rgba(255,255,255,0.12);box-shadow:0 12px 28px rgba(0,0,0,0.58)}
+
+.section{padding:1.5rem 0}
+.about-grid{display:grid;grid-template-columns:1fr 320px;gap:1.25rem}
+.profile-img{width:140px;max-width:30%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:50%;float:left;margin-right:1rem;box-shadow:0 6px 18px rgba(0,0,0,0.6);border:3px solid var(--card-border)}
+.about-content{background:var(--card);padding:1.25rem;border-radius:12px;border:1px solid var(--card-border);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+.about-aside{background:var(--card);padding:1rem;border-radius:12px;border:1px solid var(--card-border);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+.about-aside h3{margin-top:0}
+.about-aside .skills li strong{display:block;margin-bottom:4px}
+/* Degree and year formatting inside the education aside */
+.about-aside .skills li .degree{display:block;color:var(--muted);margin-bottom:6px}
+.about-aside .skills li .degree-year{display:block;color:var(--muted);font-weight:700}
+.about-aside .skills li .degree-year.expected::before{content:"Expected: ";font-weight:600;color:var(--muted)}
+.about-aside .skills li .degree-year.earned::before{content:"Earned: ";font-weight:600;color:var(--muted)}
+.skills{list-style:none;padding:0;margin:0;display:grid;gap:.35rem}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+#experience-grid{grid-template-columns:1fr;gap:1rem}
+.card{background:var(--card);padding:1rem;border-radius:var(--radius);border:1px solid var(--card-border);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+.card h3{margin-top:0}
+.project-detail{font-size:0.95rem;color:var(--muted);margin:0 0 0.4rem 0;font-weight:700}
+.card-actions{margin-top:1rem}
+.card-split{display:grid;grid-template-columns:360px 1fr;gap:1rem;align-items:start}
+.card-split .card-media{display:flex;flex-direction:column;align-items:flex-start;gap:0.6rem}
+.card-split .card-media .logo{width:160px;height:auto;display:block}
+.card-split .card-media .gif{width:100%;height:auto;max-width:360px;border-radius:8px}
+.card-split .card-body{min-width:0}
+.link{color:var(--accent);text-decoration:none}
+
+/* Small arrow after 'Read more' links inside cards */
+.card-actions .link{display:inline-flex;align-items:center;gap:0.35rem}
+/* Inline arrow after 'Read more' with a small hover nudge */
+.card-actions .link::after{content:" \2192"; /* leading space + unicode right arrow */display:inline-block;transform:translateX(0);opacity:0.95;transition:transform .18s ease,opacity .18s ease;color:var(--accent)}
+.card-actions .link:hover::after{transform:translateX(4px);opacity:1}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.skill-card{background:var(--card);padding:1rem;border-radius:var(--radius);border:1px solid var(--card-border);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+
+/* Lighter shadows for light-mode global surfaces if you prefer a softer look */
+.light .about-aside,
+.light .card,
+.light .skill-card{
+  box-shadow: 0 10px 30px rgba(2,6,23,0.18) !important;
+}
+.skill-card h3{margin:0 0 .5rem 0}
+.skill-card ul{margin:0;padding-left:1rem}
+
+.site-footer{padding:2rem 0;color:var(--muted)}
+
+/* Footer quick-links layout */
+.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.footer-nav{display:flex;gap:1rem;flex-wrap:wrap}
+.footer-nav a{color:var(--muted);text-decoration:none;font-weight:600}
+.footer-nav a:hover{text-decoration:underline;color:var(--accent)}
+.footer-meta{color:var(--muted)}
+
+@media (max-width:640px){
+  .footer-grid{flex-direction:column;align-items:center;text-align:center}
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .card-split{grid-template-columns:1fr;}
+  .card-split .card-media{flex-direction:column}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr}
+  .nav{display:none}
+  .nav-toggle{display:inline-block;margin-left:auto}
+  .skills-grid{grid-template-columns:1fr}
+  .profile-img{float:none;display:block;margin:0 auto 1rem auto;width:120px;height:120px}
+}
+
+/* Simple focus outlines */
+a:focus,button:focus{outline:2px dashed rgba(255,255,255,0.12);outline-offset:3px}
