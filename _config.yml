@@ -13,7 +13,7 @@ title: Jackson Asiatico's Portfolio
 
 # Hero Section
 name: Jackson Asiatico
-headline: headline message
+headline: Ph.D. Student in Aerospace Engineering | CFD & Applied Aerodynamics
 description: >- # dont remove this line. this will ignore all new lines until the next section
   I am a Ph.D. student in Aerospace Engineering at Embry-Riddle Aeronautical University, specializing in computational fluid dynamics (CFD) and applied aerodynamics.
   I earned my M.S. in Aerospace Engineering from the University of Central Florida and my B.S. in Mechanical Engineering from Georgia Southern University.
@@ -46,46 +46,43 @@ external-links:    # input only your own url slug. The icons with missing entrie
 
 # Skills Section - Add the list of your Skills by categories/tools. The indentation for each level needs to be precise. 
 skills:
-  - category: Computational Fluid Dynamics (CFD) and Mesh Generation
+  - category: Computational Fluid Dynamics (CFD) & Aerodynamics
     tools:
     - Star-CCM+
     - FUN3D
     - Ansys Fluent
     - Ansys CFX
     - FlightStream
+  - category: Mesh Generation & Geometry
+    tools:
     - Pointwise
     - HeldenMesh
     - ICEM CFD
-  - category: Prototyping
+    - SolidWorks
+    - Geomagic Design X
+    - AutoCAD
+  - category: Programming & Automation
     tools:
-    - SLA
-    - CNC
-    - FDM
-    - SLS
-    - DMLS
-    - PolyJet Printing
-    - Vacuum Casting
+    - Fortran
+    - MATLAB
+    - Python
+    - Bash
+    - LaTeX
+    - HPC Workflow Automation (PBS, SLURM, Torque/Moab)
+  - category: Data Analysis & Visualization
+    tools:
+    - Surrogate Modeling (Gaussian Process Regression)
+    - Tecplot
+    - ParaView
+    - R 
+    - Excel
+  - category: Prototyping & Fabrication
+    tools:
+    - 3D Printing (FDM, SLA)
+    - 3D Scanning (FARO)
+    - CNC Machining
     - Laser Cutting
     - Water Jet Cutting
-    - Arduino / Raspberry Pi
-    - Breadboarding for circuit testing
-  - category: Design Standards / Practices
-    tools:
-    - GD&T ASME Y14
-    - ISO fits and tolerances
-    - PLM (PTC Windchill / Arena)   
-  - category: PCB Design
-    tools:
-    - Altium Designer
-    - Altium
-    - Eagle 
-    - KiCad
-  - category: Problem Solving / Risk Management
-    tools:
-    - Root Cause Analysis (e.g., 5 Whys, Fishbone Diagram)
-    - DFMEA / PFMEA 
-    - Six Sigma methodologies
-    - Shain Red-X
 
 
 # Contact Form Setup. Setup an account and copy over the key. When someone fills out the form, it will be received in your email.
