@@ -1,0 +1,12 @@
+# Node modules (if you ever add Node tooling)
+node_modules/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Editor
+.vscode/
