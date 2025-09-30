@@ -15,10 +15,9 @@ title: Jackson Asiatico's Portfolio
 name: Jackson Asiatico
 headline: Ph.D. Student in Aerospace Engineering | CFD & Applied Aerodynamics
 description: >- # dont remove this line. this will ignore all new lines until the next section
-  I am a Ph.D. student in Aerospace Engineering at Embry-Riddle Aeronautical University, specializing in computational fluid dynamics (CFD) and applied aerodynamics.
-  I earned my M.S. in Aerospace Engineering from the University of Central Florida and my B.S. in Mechanical Engineering from Georgia Southern University.
-  My research experienced includes CFD analysis of NASA's Dragonfly lander, atmospheric flight and entry vehicles such as Mars Sample Return Earth Entry Vehicle and Dragonfly's
-  entry capsule, microfluidic applications, and more!
+  I am a Ph.D. student in Aerospace Engineering at Embry-Riddle Aeronautical University, with an M.S. from the University of Central Florida and a B.S. from Georgia Southern University.
+  My research focuses on computational fluid dynamics (CFD) and applied aerodynamics, including work on NASA’s Dragonfly mission, 
+  atmospheric entry vehicles such as the Mars Sample Return Earth Entry Vehicle, and microfluidics for space health applications.
 
 # Place your profile image in /assets/images/profile-image/folder and edit the file name
 profile_image: ./assets/images/profile-image/flightsuit.JPG
